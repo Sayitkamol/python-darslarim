@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-2022-yil, 22-fevral. 21:04:40 
+Created on Thu May  4 21:14:38 2023
 
-Muallif: Sayitkamol
+@author: Sayitkamol
 
-20-dars = "Qiymat qaytaruvchi funksiya"
+20-dars: QIYMAT QAYTARUVCHI FUNKSIYA
 
 """
-
-'''FUNKSIYADAN ODDIY QIYMAT QAYTARISH'''
 
 def toliq_ism_yasa(ism, familiya):
     """Toliq isma qaytaruvchi funksiya"""
@@ -17,10 +15,8 @@ def toliq_ism_yasa(ism, familiya):
 
 talaba1 = toliq_ism_yasa('olim','hakimov')
 talaba2 = toliq_ism_yasa('hakim','olimov')
+# print(f"Darsga kelmagan talabalar: {talaba1} va {talaba2}")
 
-print(f"Darsga kelmagan talabalar: {talaba1} va {talaba2}")
-
-'''IXTIYORIY ARGUMENTLAR'''
 
 def toliq_ism_yasa(ism, familiya, otasining_ismi=''):
     """Toliq isma qaytaruvchi funksiya"""
@@ -32,9 +28,7 @@ def toliq_ism_yasa(ism, familiya, otasining_ismi=''):
 
 talaba1 = toliq_ism_yasa('olim','hakimov') #otasining_ismi kiritilmadi
 talaba2 = toliq_ism_yasa('hakim','olimov','abrorovich')
-print(f"Darsga kelmagan talabalar: {talaba1} va {talaba2}")
-
-'''FUNKSIYADAN LUG'AT QAYTARAMIZ'''
+# print(f"Darsga kelmagan talabalar: {talaba1} va {talaba2}")
 
 def avto_info(kompaniya, model, rangi, korobka, yili, narhi=None):
     avto = {'kompaniya':kompaniya,
@@ -56,9 +50,6 @@ for avto in avtolar:
         narh = "Noma'lum"
     print(f"{avto['rang']} {avto['model']}. Narhi: {narh}")
 
-
-'''FUNKSIYADAN RO'YXAT QAYTARAMIZ'''
-
 def oraliq(min,max):
     sonlar = [] # bo'sh ro'yxat
     while min<max:
@@ -66,24 +57,23 @@ def oraliq(min,max):
         min += 1
     return sonlar
 
-print(oraliq(0,10))
-print(oraliq(10,21))
+# print(oraliq(0,10))
+# print(oraliq(10,21))
 
-'''FUNKSIYADAN RO'YXAT QAYTARAMIZ-2'''
-#Tugallanmagan
-def oraliq(min,max,qadam=1):
+
+def oraliq2(min,max,step=1):
     sonlar = [] # bo'sh ro'yxat
     while min<max:
-        sonlar.append(min)
-        min += 1
+        if step:
+            sonlar.append(min)
+            min += step
+        else:
+            sonlar.append(min)
+            min += 1
     return sonlar
-    if qadam:
-        continue
 
-print(oraliq(0,10))
-print(oraliq(10,21))
+print(oraliq(0,21,2)) # 0 dan 21 gacha 2 qadam bilan
 
-'''FUNKSIYALARNI TSIKLDA ISHLATISH'''
 
 print("Saytimizdagi avtolar ro'yxatini shakllantiramiz.")
 avtolar=[] # salondagi avtolar uchun bo'sh ro'yxat
@@ -96,8 +86,8 @@ while True:
     yili=input("Ishlab chiqarilgan yili: ")
     narhi=input("Narhi: ")
     
-    Foydalanuvchi kiritdan ma'lumotlardan avto_info yordamida 
-    lug'at shakllantirib, har bir lug'atni ro'yxatga qo'shamiz:
+    #Foydalanuvchi kiritdan ma'lumotlardan avto_info yordamida 
+    #lug'at shakllantirib, har bir lug'atni ro'yxatga qo'shamiz:
     avtolar.append(avto_info(kompaniya, model, rangi, korobka, yili, narhi))
     
     # Yana avto qo'shish-qo'shmaslikni so'raymiz
@@ -105,47 +95,117 @@ while True:
     if javob=='no':
         break
 
-print("\nSalonimizdagi avtolar")
-for avto in avtolar:
-    if avto['narh']:
-        narh = avto['narh']
-    else:
-        narh = "Noma'lum"
-    print(f"{avto['rang']} {avto['model']}, {avto['korobka']} karobka. narhi: {avto['narh']}")
 
-'''Amaliyot'''
+""" Amaliyotlar """
 
+''' 1 , 2'''
 
-def info(ism,  familiya, t_yil, t_joy, email='', tel_raqam=None):
-    malumot = {
-        'ism' : ism,
-        'familiya': familiya,
-        't_yil': t_yil,
-        'yoshi': 2022 - t_yil,
-        't_joy': t_joy,
-        'email': email,
-        'tel_raqam': tel_raqam
-        }
-    return malumot
+def user_info(ism, familiya, tugilgan_yil, tugilgan_joy, email='', telefon_nomer=''):
+    mijozlar = {'ism':ism,
+                     'familiya':familiya,
+                     'tugilgan_yil':tugilgan_yil,
+                     'tugilgan_joy':tugilgan_joy,
+                     'email':email,
+                     'telefon_nomer':telefon_nomer}
+    
+    return mijozlar
 
-print("Mijoz haqida malumot kiriting:")
-malumotlar = []
+foydalanuvchi1 = user_info('ali','valiyev', 1997,'bekobod','email', +812002323)
+print(foydalanuvchi1)
+
+mijozlar = []
+print("Mijozlar ro'yxati:")
 while True:
-    ism = input("Ismi: ")
-    familiya = input("Familiyasi: ")
-    t_yil = int(input("Tugilgan yili: "))
-    t_joy = input("Tugilgan joyi: ")
-    email = input("Email: ")
-    tel_raqam = input("Telefon raqami: ")
-    malumotlar.append(info(ism, familiya, t_yil, t_joy, email, tel_raqam))
-    javob = input("Davom etasizmi? (ha/yo'q)")
-    if javob != "ha":
+    ism = input("Ismini kiriting: ")
+    familiya = input("Familiyani kiriting: ")
+    tugilgan_yil = input("Tug'ilgan yilini kiriting: ")
+    tugilgan_joy = input("Tugilgan joyini kiriting: ")
+    email = input("Elektron pochta manzilini kiriting (Y'oq bo'lsa 'no' qo'ying'): ")
+    telefon_nomer = input("Telefon nomerni kiriting (Y'oq bo'lsa \"bo'sh\" qoldiring): ")
+    
+    mijozlar.append(user_info(ism, familiya, tugilgan_yil, tugilgan_joy, email, telefon_nomer))
+    
+    javob=input("Yana mijoz qo'shasizmi? (yes/no): ")
+    if javob == 'no':
         break
+    
+#   manzilda xatolik bor
+n=1
+for mijoz in mijozlar:
+    manzil = mijoz[tugilgan_joy]
+    print(f"{n}-mijoz. {mijoz['ism'].title()} {mijoz['familiya'].title()}. "
+          f"{mijoz['tugilgan_yil']}-yili {manzil.title()}da tugilgan.")
+    n += 1
+    if email:
+        print(f"Elektron pochta manzili: {email}")
+    if telefon_nomer:
+        print(f"Telefon nomeri: {telefon_nomer}")
 
-print("Mijozlar: ")
-for malumot in malumotlar:
-    print(
-        f"{malumot['ism'].title()} {malumot['familiya'].title()}, "
-        f"{malumot['yoshi']} yoshda, telefon raqami: {malumot['tel_raqam']}"
-        )
+
+''' 3 '''
+
+def kattasini_chiqar(son1,son2,son3):
+    if son1<son2<son3:
+        return son3
+    elif son1<son2>son3:
+        return son2
+    elif son1>son2>son3:
+        return son1
+    else:
+        return 'sonlar teng'
+
+# print(kattasini_chiqar(12, 23, 45))
+
+''' 4 '''
+
+def aylana_info(radius, pi=3.14159):
+    aylana= {'radius': radius,
+             'diametr': 2 * radius,
+             'perimetr': 2 * radius * pi,
+             'yuza': pi * radius ** 2}
+    return aylana
+
+
+''' 5 '''
+
+def tub_sonlar(min,max):
+    tub_sonlar = []
+    for n in range(min, max + 1):
+        tub=True
+        if n ==1:
+            tub=False
+        elif n == 2:
+            tub = True
+        else:
+            for x in range(2, n):
+                if n%x == 0:
+                    tub = False
+                    
+        if tub:
+            tub_sonlar.append(n)
+    return tub_sonlar
+
+
+''' 6 '''
+
+def fibonacci(n):
+    sonlar = []
+    for x in range(n):
+        if x == 0 or x == 1:
+            sonlar.append(1)
+        else:
+            sonlar.append(sonlar[x - 1] + sonlar[x - 2])
+    return sonlar
+
+
+# print(fibonacci(10))
+
+
+
+
+
+
+
+
+
 

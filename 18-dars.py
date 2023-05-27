@@ -1,116 +1,113 @@
 # -*- coding: utf-8 -*-
 """
-2022 yil, 22-fevral. 09:35:38 
+Created on Wed May  3 23:30:56 2023
 
-Muallif: Sayitkamol
+@author: Sayitkamol
 
-18-dars
-
+18-dars: While, ro'yxat va lug'at 
 """
 
-'''WHILE YORDAMIDA RO'YXATNI TO'LDIRISH'''
 ismlar = []
-
-print("Yaqin do'stlaringiz ro'yxatini tuzamiz.")
-n=1 # ismlarni sanash uchun o'zgaruvchi
+n = 1
 while True:
-    savol = f"{n}-do'stingiz ismini kiriting:"
+    savol = f"{n}-do'stingiz ismini kiriting: "
     ism = input(savol)
     ismlar.append(ism)
-    javob = input("Yana ism qo'shasizmi? (ha/yo'q)")
-    if javob =='ha':
-        n+=1
-        continue
-    else:
+    takrorlash = input("Yana ism qo'shasizmi? (ha/yo'q)")
+    n+=1
+    if takrorlash != 'ha':
         break
-    
-print("\nDo'stlaringiz ro'yhati:")
+
+print("Do'stlaringiz ro'yxati:")
 for ism in ismlar:
     print(ism.title())
-    
-"""Do'stingizni yoshini saqlaymiz!"""
-print("Do'stlaringiz yoshini saqlaymiz.")
+
+
+print("D'stlaringiz yoshni saqlaymiz.")
 dostlar = {}
 ishora = True
 while ishora:
-    ism = input("Do'stingiz ismini kiriting: ")
-    yosh = input(f"{ism.title()}ning yoshini kiriting: ")
-    dostlar[ism] = int(yosh) # ism kalit, yosh qiymat
+    ism = input("Do'stingizning ismni kiriting:\n>>> ")
+    yosh = input(f"{ism.title()}ning yoshini kiriting.\n>>> ")
+    dostlar[ism] = int(yosh)
     
-    javob = input("Yana ma'lumot qo'shasizmi? (ha/yo'q)")
-    if javob == "yo'q":
+    javob = input("Yana ma'lumot qo'shasizmi?  (ha/yo'q')\n>>> ")
+    if javob != 'ha':
         ishora = False
 
 for ism, yosh in dostlar.items():
     print(f"{ism.title()} {yosh} yoshda")
 
-'''RO'YXAT ELEMENTLARINI O'CHIRISH'''
-cars = ['lacetti','nexia','toyota','nexia','audi','malibu','nexia']
-while 'nexia' in cars: # toki nexia cars ro'yxati ichida ekan...
-    cars.remove('nexia') # nexia ni ro'yxatdan olib tashla
+
+
+cars = ['lacetti','nexia','malibu','damas','nexia','matiz','nexia','lacetti']
+car = 'nexia'
+while car in cars:
+    cars.remove(car)
+    
 print(cars)
 
-'''RO'YXATDAN RO'YXATGA ELEMENT KO'CHIRISH'''
-talabalar = ['hasan', 'husan', 'olim', 'botir']
+
+
+talabalar = ['hasan','husan','olim','botir']
 baholangan_talabalar = {}
 while talabalar:
     talaba = talabalar.pop()
     baho = input(f"{talaba.title()}ning bahosini kiriting: ")
     print(f"{talaba.title()} baholandi")
-    baholangan_talabalar[talaba] = baho
-
-
-'''Amaliyot-1'''
-
-print("Restoranimizga hush kelibsiz!")
-buyurtmalar = []
-ishora = True
-n = 1
-
-while ishora:
-    buyurtma = input(f"{n}-buyurtmangizni berishingiz mumkin: ")
-    buyurtmalar.append(buyurtma.title())
-    javob = input("Yana buyurtma bermoqchimisiz? (ha\yo'q)")
-    if javob == 'ha':
-        n += 1
-    if javob == "yo'q":
-        ishora = False
+    baholangan_talabalar[talaba] = int(baho)
     
-print(f"Siz quyidagi buyurtmalarni amalga oshirdingiz:")    
-for buyurtma in buyurtmalar:
-    print(buyurtma)
+# print(baholangan_talabalar)
 
-'''Amaliyot-2'''
-'''e-bozor uchun ...'''
+for talaba, baho in baholangan_talabalar.items():
+    print(f"{talaba.title()}ning bahosi {baholangan_talabalar[talaba]}")
 
-print("E-bozorga hush kelibsiz!")
-maxsulotlar = {}
-n = 0
+
+""" Amaliyot """
+
+
+
+
+maxsulotlar = {'olma': 15000.0, 
+               'anor': 20000.0, 
+               'banan': 22000.0, 
+               'uzum': 10000.0, 
+               'gilos': 16000.0, 
+               'apelsin': 25000.0
+               }
+
 while True:
-    maxsulot = input(f"{n+1}-maxsulot nomini kiriting: ")
-    narhi = input(f"{maxsulot}ning narhini kiriting: ")
-    
-    maxsulotlar[maxsulot] = int(narhi)
-    savol = input("Yana maxsulot kiritmoqchimisiz-(ha/yo'q): ")
-    if savol != "ha":
+    maxsulot = input("Maxsulot nomini kiriting: ")
+    narh = float(input(f"{maxsulot.title()}ning narhini kiriting: "))
+    maxsulotlar[maxsulot] = narh
+    javob = input("Yana maxsulot kiritasizmi?\n(ha/yo'q) >>> ")
+    if javob != 'ha':
         break
-    
-print("Siz kiritgan maxsulotlar ro'yhati:")
-for maxsulot, narhi in maxsulotlar.items():
-    print(f"\n{maxsulot.title()} narhi = {narhi}")
 
-'''Amaliyot-3'''
-
- 
+print("\nSiz kiritgan maxsulotlar:")
+for maxsulot, narh in maxsulotlar.items():
+    print(f"{maxsulot.title()}ning narxi {maxsulotlar[maxsulot]} so'm.")
 
 
+buyurtmalar = []
+savol = "Maxsulot nomini kiriting: "
+
+while True:
+    maxsulot = input(savol)
+    buyurtmalar.append(maxsulot)
+    javob = input("Yangi maxsulot kiritasizmi?  (ha/yo'q)\n>>> ")
+    if javob != 'ha':
+        break
+# print("\nSiz buyurtma qilgan maxsulotlar: ")
+# for n in buyurtmalar:
+#     print(n.title())
 
 
-
-
-
-
-
+for maxsulot in buyurtmalar:
+    if maxsulot in maxsulotlar:
+        print(f"{maxsulot.title()}ning narhi {maxsulotlar[maxsulot]} so'm")
+    else:
+        print(f"Bizda {maxsulot} yo'q")
 
 
 
